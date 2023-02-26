@@ -23,5 +23,13 @@ RUN mvn package -Dmaven.test.skip=true
 FROM openjdk:11-jdk
 COPY --from=0 /build/target/demo-0.0.1-SNAPSHOT.jar /app/target/demo-0.0.1-SNAPSHOT.jar
 
-EXPOSE 8081
+EXPOSE 8081 9091
+
+ENV JAVA_TOOL_OPTIONS "-Dcom.sun.management.jmxremote.ssl=false \
+-Dcom.sun.management.jmxremote.authenticate=false \
+-Dcom.sun.management.jmxremote.port=9091 \
+-Dcom.sun.management.jmxremote.rmi.port=9091 \
+-Dcom.sun.management.jmxremote.host=0.0.0.0 \
+-Djava.rmi.server.hostname=0.0.0.0"
+
 ENTRYPOINT [ "java", "-jar", "/app/target/demo-0.0.1-SNAPSHOT.jar", "--server.port=8081" ]
