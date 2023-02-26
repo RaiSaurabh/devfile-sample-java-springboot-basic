@@ -29,7 +29,7 @@ ENV JAVA_TOOL_OPTIONS "-Dcom.sun.management.jmxremote.ssl=false \
 -Dcom.sun.management.jmxremote.authenticate=false \
 -Dcom.sun.management.jmxremote.port=9091 \
 -Dcom.sun.management.jmxremote.rmi.port=9091 \
--Dcom.sun.management.jmxremote.host=0.0.0.0 \
--Djava.rmi.server.hostname=0.0.0.0"
+-Dcom.sun.management.jmxremote.host=127.0.0.1 \
+-Djava.rmi.server.hostname=127.0.0.1"
 
 ENTRYPOINT [ "java", "-jar", "/app/target/demo-0.0.1-SNAPSHOT.jar", "--server.port=8081" ]
